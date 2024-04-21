@@ -1,0 +1,13 @@
+#!/sbin/openrc-run
+
+description="ollama serve"
+group=${group:-${RC_SVCNAME}}
+user=${user:-${RC_SVCNAME}}
+pidfile=/var/run/${RC_SVCNAME}.pid
+command="/usr/bin/ollama"
+command_args="serve"
+start_stop_daemon_args="--user ${user} --group ${group}"
+
+depend() {
+    need net
+}
