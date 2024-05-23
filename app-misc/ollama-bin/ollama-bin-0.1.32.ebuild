@@ -31,8 +31,6 @@ src_unpack() {
 
 src_install() {
     elog "installing"
-    # install -D -m 755 -v "$WORKDIR/$P/ollama-linux-amd64" "$D/$P/ollama"
-    
     newbin "ollama-linux-amd64" "ollama"
     newinitd "${FILESDIR}/ollama.initd" "ollama"
     systemd_dounit "${FILESDIR}/ollama.service"
