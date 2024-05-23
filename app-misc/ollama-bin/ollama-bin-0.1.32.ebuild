@@ -12,7 +12,7 @@ DESCRIPTION="Ollama is a command-line tool for managing cloud infrastructure"
 HOMEPAGE="https://github.com/ollama/ollama"
 
 ROOT=/
-SRC_URI="https://github.com/ollama/ollama/releases/download/v${PV}/ollama-linux-amd64"
+SRC_URI="https://github.com/ollama/ollama/releases/download/v${PV}/ollama-linux-amd64 -> ollama-linux-amd64-${PV}"
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
@@ -26,7 +26,7 @@ RDEPEND="${DEPEND}"
 
 src_unpack() {
     elog "copying binary"
-    install -D -m 755 -v "$DISTDIR/ollama-linux-amd64" "$WORKDIR/$P/ollama-linux-amd64"
+    install -D -m 755 -v "$DISTDIR/ollama-linux-amd64-${PV}" "$WORKDIR/$P/ollama-linux-amd64"
 }
 
 src_install() {
