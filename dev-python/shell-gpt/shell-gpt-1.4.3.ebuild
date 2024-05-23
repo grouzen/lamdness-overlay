@@ -23,6 +23,12 @@ RESTRICT="mirror"
 DOCS="README.md"
 
 BDEPEND="dev-python/hatchling[${PYTHON_USEDEP}]"
+RDEPEND="
+    dev-python/rich[${PYTHON_USEDEP}]
+    dev-python/distro[${PYTHON_USEDEP}]
+    dev-python/click[${PYTHON_USEDEP}]
+    || ( HomeAssistantRepository/typer[${PYTHON_USEDEP}] )
+"
 
 src_unpack() {
     elog "unpacking"
