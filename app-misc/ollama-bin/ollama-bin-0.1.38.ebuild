@@ -8,7 +8,7 @@ EAPI=8
 
 inherit systemd
 
-DESCRIPTION="Ollama is a command-line tool for managing cloud infrastructure"
+DESCRIPTION="Ollama is a command-line tool for managing and running private LLMs"
 HOMEPAGE="https://github.com/ollama/ollama"
 
 ROOT=/
