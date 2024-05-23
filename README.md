@@ -12,7 +12,7 @@ So, the only way of using it at the moment is by adding a file to `/etc/portage/
 priority = 50
 location = /opt/portage/lamdness
 sync-type = git
-sync-uri = git://github.com/grouzen/lamdness-overlay.git
+sync-uri = https://github.com/grouzen/lamdness-overlay.git
 auto-sync = Yes
 ```
 
