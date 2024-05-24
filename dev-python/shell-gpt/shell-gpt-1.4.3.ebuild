@@ -23,6 +23,8 @@ RESTRICT="mirror"
 DOCS="README.md"
 
 BDEPEND="dev-python/hatchling[${PYTHON_USEDEP}]"
+# TODO: 
+# - add litellm dep: https://github.com/BerriAI/litellm/blob/main/pyproject.toml
 RDEPEND="
     dev-python/rich[${PYTHON_USEDEP}]
     dev-python/distro[${PYTHON_USEDEP}]
