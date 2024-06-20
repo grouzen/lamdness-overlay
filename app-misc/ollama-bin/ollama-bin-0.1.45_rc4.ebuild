@@ -29,7 +29,7 @@ RDEPEND="${DEPEND}"
 
 src_unpack() {
     elog "copying binary"
-    install -D -m 755 -v "$DISTDIR/ollama-linux-amd64-${PV}" "$WORKDIR/$P/ollama-linux-amd64"
+    install -D -m 755 -v "$DISTDIR/ollama-linux-amd64-${MY_PV}" "$WORKDIR/$P/ollama-linux-amd64"
 }
 
 src_install() {
