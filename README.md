@@ -16,5 +16,21 @@ sync-uri = https://github.com/grouzen/lamdness-overlay.git
 auto-sync = Yes
 ```
 
+# Available packages
+
+```
+├── acct-group
+│   └── ollama
+├── acct-user
+│   └── ollama
+├── app-misc
+│   └── ollama-bin
+├── dev-rust
+│   ├── impala
+│   └── qv
+`── net-vpn
+    └── globalprotect-openconnect
+```
+
 Enjoy!
 
