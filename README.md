@@ -26,8 +26,10 @@ auto-sync = Yes
 ├── app-misc
 │   └── ollama-bin
 ├── dev-rust
+│   ├── aichat
 │   ├── impala
-│   └── qv
+│   ├── qv
+│   └── tenere
 `── net-vpn
     └── globalprotect-openconnect
 ```
