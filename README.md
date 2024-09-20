@@ -30,8 +30,10 @@ auto-sync = Yes
 │   ├── impala
 │   ├── qv
 │   └── tenere
-`── net-vpn
-    └── globalprotect-openconnect
+├── net-vpn
+│   └── globalprotect-openconnect
+└── sys-process
+    └── pik
 ```
 
 Enjoy!
