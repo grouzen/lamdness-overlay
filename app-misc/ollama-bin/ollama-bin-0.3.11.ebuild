@@ -32,7 +32,7 @@ src_unpack() {
 
 src_install() {
     elog "installing"
-    newbin bin/ollama
+    dobin bin/ollama
     dolib.so lib/ollama/lib*.so*
     newinitd "${FILESDIR}/ollama.initd" "ollama"
     newenvd "${FILESDIR}"/ollama.envd 99ollama
