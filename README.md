@@ -24,14 +24,15 @@ auto-sync = Yes
 ├── acct-user
 │   └── ollama
 ├── app-misc
-│   └── ollama-bin
-├── dev-rust
 │   ├── aichat
-│   ├── impala
-│   ├── qv
+│   ├── ollama-bin
 │   └── tenere
+├── dev-rust
+│   └── qv
 ├── net-vpn
 │   └── globalprotect-openconnect
+├── net-wireless
+│   └── impala
 └── sys-process
     └── pik
 ```
