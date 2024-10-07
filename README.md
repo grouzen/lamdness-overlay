@@ -29,6 +29,7 @@ sudo eselect repository enable lamdness
 ├── net-vpn
 │   └── globalprotect-openconnect
 ├── net-wireless
+│   ├── bluetui
 │   └── impala
 ├── sys-cluster
 │   └── kdash
