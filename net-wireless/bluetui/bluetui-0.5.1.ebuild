@@ -31,12 +31,11 @@ CRATES="
 	clap_derive@4.5.11
 	clap_lex@0.7.2
 	colorchoice@1.0.2
-	compact_str@0.8.0
+	compact_str@0.7.1
 	concurrent-queue@2.5.0
 	coolor@0.9.0
 	crossbeam-utils@0.8.20
 	crossterm@0.27.0
-	crossterm@0.28.1
 	crossterm_winapi@0.9.1
 	custom_debug@0.6.1
 	custom_debug_derive@0.6.1
@@ -51,7 +50,6 @@ CRATES="
 	displaydoc@0.2.5
 	either@1.13.0
 	equivalent@1.0.1
-	errno@0.3.9
 	event-listener@5.3.1
 	event-listener-strategy@0.5.2
 	fnv@1.0.7
@@ -72,7 +70,6 @@ CRATES="
 	hex@0.4.3
 	ident_case@1.0.1
 	indexmap@2.2.6
-	instability@0.3.2
 	is_terminal_polyfill@1.70.1
 	itertools@0.12.1
 	itertools@0.13.0
@@ -81,7 +78,6 @@ CRATES="
 	libc@0.2.155
 	libdbus-sys@0.2.5
 	libredox@0.1.3
-	linux-raw-sys@0.4.14
 	lock_api@0.4.12
 	log@0.4.22
 	lru@0.12.3
@@ -107,11 +103,10 @@ CRATES="
 	pkg-config@0.3.30
 	proc-macro2@1.0.86
 	quote@1.0.36
-	ratatui@0.28.0
+	ratatui@0.27.0
 	redox_syscall@0.5.3
 	redox_users@0.4.5
 	rustc-demangle@0.1.24
-	rustix@0.38.34
 	rustversion@1.0.17
 	ryu@1.0.18
 	scopeguard@1.2.0
@@ -125,6 +120,7 @@ CRATES="
 	slab@0.4.9
 	smallvec@1.13.2
 	socket2@0.5.7
+	stability@0.2.1
 	static_assertions@1.1.0
 	strsim@0.11.1
 	strum@0.26.3
@@ -140,7 +136,7 @@ CRATES="
 	toml@0.8.16
 	toml_datetime@0.6.7
 	toml_edit@0.22.17
-	tui-input@0.10.0
+	tui-input@0.9.0
 	unicode-ident@1.0.12
 	unicode-segmentation@1.11.0
 	unicode-truncate@1.1.0
