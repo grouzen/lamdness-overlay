@@ -30,6 +30,8 @@ sudo eselect repository enable lamdness
 │   └── globalprotect-openconnect
 ├── net-wireless
 │   └── impala
+├── sys-cluster
+│   └── kdash
 └── sys-process
     └── pik
 ```
