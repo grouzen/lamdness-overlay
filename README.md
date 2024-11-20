@@ -18,6 +18,8 @@ sudo eselect repository enable lamdness
 │   └── ollama
 ├── acct-user
 │   └── ollama
+├── app-admin
+│   └── passepartui
 ├── app-misc
 │   ├── aichat
 │   ├── ollama-bin
