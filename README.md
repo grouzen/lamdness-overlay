@@ -28,6 +28,8 @@ sudo eselect repository enable lamdness
 │   └── qv
 ├── dev-util
 │   └── jwt-ui
+├── net-im
+│   └── discord
 ├── net-vpn
 │   └── globalprotect-openconnect
 ├── net-wireless
