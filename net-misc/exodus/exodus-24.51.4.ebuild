@@ -19,7 +19,7 @@ RESTRICT="fetch"
 DESTDIR="/opt/${PN}"
 # TODO: use variables instead of hardcoded path
 DISTFILES="/var/cache/distfiles"
-ARCHIVE="${DISTFILES}/${P}.zip"
+ARCHIVE="${DISTFILES}/exodus-linux-x64-${PV}.zip"
 
 pkg_nofetch() {
 	einfo "This package requires you to manually download the ZIP archive from the official site via web browser"
@@ -32,7 +32,7 @@ pkg_pretend() {
 	if [[ -f "${ARCHIVE}" ]]; then
 		einfo "Downloaded file was found"
 	else
-		die "Please download the archive manually from https://downloads.exodus.com/releases/exodus-linux-x64-${PV}.zip, rename it to ${P}.zip, and place it into your DISTDIR directory"
+		die "Please download the archive manually from https://downloads.exodus.com/releases/exodus-linux-x64-${PV}.zip and place it into your DISTDIR directory"
 	fi
 }
 
@@ -43,9 +43,19 @@ src_unpack() {
  	mv -v "${WORKDIR}/${UNZIPPED}"/* "${S}"
 }
 
+src_prepare() {
+	default
+	# Update exec location in launcher
+	sed --expression "s:@@DESTDIR@@:${DESTDIR}:" \
+		"${FILESDIR}/launcher.sh" > "${T}/launcher.sh" || die "updating of exec location in launcher failed"
+}
+
 src_install() {
 	einfo "Installing by copying all the files ${S} -> ${D}/opt/${PN}"
 	D_OPT_PN="${D}/opt/${PN}"
 	mkdir -vp "${D_OPT_PN}"
 	cp -arv "${S}"/* "${D_OPT_PN}"
+
+	exeinto "/usr/bin"
+	newexe "${T}/launcher.sh" "exodus" || die "failing to install launcher"
 }
