@@ -14,17 +14,20 @@ KEYWORDS="~amd64"
 # https://devmanual.gentoo.org/eclass-reference/ebuild/index.html
 # Useful sanity check when installing files manually
 QA_PREBUILT="*"
+RESTRICT="fetch"
 
 DESTDIR="/opt/${PN}"
 # TODO: use variables instead of hardcoded path
 DISTFILES="/var/cache/distfiles"
+ARCHIVE="${DISTFILES}/${P}.zip"
 
-pkg_pretend() {
+pkg_nofetch() {
 	einfo "This package requires you to manually download the ZIP archive from the official site via web browser"
 	einfo "For more details see https://github.com/flathub/io.exodus.Exodus/issues/183"
-	einfo "Checking if the archive is downloaded and placed into distfiles dir"
+}
 
-	ARCHIVE="${DISTFILES}/${P}.zip"
+pkg_pretend() {
+	einfo "Checking if the archive is downloaded and placed into distfiles dir"
 
 	if [[ -f "${ARCHIVE}" ]]; then
 		einfo "Downloaded file was found"
@@ -34,12 +37,10 @@ pkg_pretend() {
 }
 
 src_unpack() {
-	ARCHIVE="${DISTFILES}/${P}.zip"
 	UNZIPPED="Exodus-linux-x64"
 
-	ln -sv "${ARCHIVE}" "${DISTDIR}/${P}.zip"
-	unpack "${P}.zip"
-	mv -v "${WORKDIR}/${UNZIPPED}" "${S}"
+	unzip "${ARCHIVE}" -d "${WORKDIR}/${UNZIPPED}"
+ 	mv -v "${WORKDIR}/${UNZIPPED}"/* "${S}"
 }
 
 src_install() {
