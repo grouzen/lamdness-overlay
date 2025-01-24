@@ -28,6 +28,8 @@ sudo eselect repository enable lamdness
 │   └── qv
 ├── dev-util
 │   └── jwt-ui
+├── net-analyzer
+│   └── netscanner
 ├── net-im
 │   └── discord
 ├── net-misc
