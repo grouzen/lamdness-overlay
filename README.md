@@ -22,6 +22,7 @@ sudo eselect repository enable lamdness
 │   └── passepartui
 ├── app-misc
 │   ├── aichat
+│   ├── ellama
 │   ├── ollama-bin
 │   └── tenere
 ├── dev-rust
