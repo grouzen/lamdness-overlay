@@ -1,0 +1,10 @@
+#!/sbin/openrc-run
+
+name=$RC_SVCNAME
+description="Start Ollana daemon"
+supervisor=supervise-daemon
+group=${group:-${RC_SVCNAME}}
+user=${user:-${RC_SVCNAME}}
+command="/usr/bin/ollana"
+command_args="serve"
+command_user="ollana"
