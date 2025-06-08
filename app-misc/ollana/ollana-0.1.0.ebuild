@@ -226,6 +226,7 @@ CRATES="
 	zstd@0.13.2
 "
 
+inherit systemd
 inherit cargo
 
 DESCRIPTION="Ollama over LAN"
@@ -235,14 +236,16 @@ SRC_URI="
 	${CARGO_CRATE_URIS}
 "
 
-LICENSE=""
+LICENSE="MIT"
 # Dependent crate licenses
 LICENSE+=" Apache-2.0 BSD MIT Unicode-3.0"
 SLOT="0"
 KEYWORDS="~amd64"
 
 src_install() {
+	cargo_src_install
+
 	elog "installing init services"
-	newinitd "${FILESDIR}/ollama.initd" "ollama"
-	systemd_dounit "${FILESDIR}/ollama.service"
+	newinitd "${FILESDIR}/ollana.initd" "ollana"
+	systemd_dounit "${FILESDIR}/ollana.service"
 }
