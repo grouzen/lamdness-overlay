@@ -243,8 +243,8 @@ SLOT="0"
 KEYWORDS="~amd64"
 
 DEPEND="
-        acct-user/ollama
-        acct-group/ollama
+        acct-user/ollana
+        acct-group/ollana
         "
 
 RDEPEND="${DEPEND}"
