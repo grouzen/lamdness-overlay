@@ -240,3 +240,9 @@ LICENSE=""
 LICENSE+=" Apache-2.0 BSD MIT Unicode-3.0"
 SLOT="0"
 KEYWORDS="~amd64"
+
+src_install() {
+	elog "installing init services"
+	newinitd "${FILESDIR}/ollama.initd" "ollama"
+	systemd_dounit "${FILESDIR}/ollama.service"
+}
