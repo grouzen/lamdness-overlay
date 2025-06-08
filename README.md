@@ -24,6 +24,7 @@ sudo eselect repository enable lamdness
 │   ├── aichat
 │   ├── ellama
 │   ├── ollama-bin
+|   |── ollana
 │   └── tenere
 ├── dev-rust
 │   └── qv
