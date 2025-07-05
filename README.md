@@ -25,6 +25,7 @@ sudo eselect repository enable lamdness
 │   ├── ellama
 │   ├── ollama-bin
 |   |── ollana
+|   |── reprompt
 │   └── tenere
 ├── dev-rust
 │   └── qv
