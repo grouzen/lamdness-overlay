@@ -15,22 +15,26 @@ sudo eselect repository enable lamdness
 
 ```
 ├── acct-group
-│   └── ollama
+│   ├── ollama
+│   └── ollana
 ├── acct-user
-│   └── ollama
+│   ├── ollama
+│   └── ollana
 ├── app-admin
 │   └── passepartui
+├── app-laptop
+│   └── framework-tool-tui
 ├── app-misc
 │   ├── aichat
 │   ├── ellama
 │   ├── ollama-bin
-|   |── ollana
-|   |── reprompt
+│   ├── ollana
+│   ├── reprompt
 │   └── tenere
 ├── dev-rust
 │   └── qv
 ├── dev-util
-│   ├── jwt-cli 
+│   ├── jwt-cli
 │   └── jwt-ui
 ├── net-analyzer
 │   └── netscanner
