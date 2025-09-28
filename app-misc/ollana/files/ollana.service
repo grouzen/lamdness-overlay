@@ -3,7 +3,8 @@ Description=Ollana Service
 After=network-online.target
 
 [Service]
-ExecStart=/usr/bin/ollana serve
+EnvironmentFile=-/etc/conf.d/ollana
+ExecStart=/usr/bin/ollana serve $OLLANA_OPTS
 User=ollana
 Group=ollana
 Restart=always

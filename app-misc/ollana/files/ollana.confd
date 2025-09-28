@@ -1,0 +1,1 @@
+OLLANA_OPTS="--log-file=/var/log/ollana/ollana.log"
