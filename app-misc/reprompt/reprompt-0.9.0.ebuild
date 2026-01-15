@@ -451,14 +451,14 @@ declare -A GIT_CRATES=(
 
 inherit cargo
 
-DESCRIPTION=""
+DESCRIPTION="Simple desktop GUI application to easily configure and manage multiple LLM tasks to avoid writing the same prompts repeatedly"
 HOMEPAGE=""
 SRC_URI="
 	https://github.com/grouzen/reprompt/archive/refs/tags/v${PV}.tar.gz -> ${P}.tar.gz
 	${CARGO_CRATE_URIS}
 "
 
-LICENSE="Simple desktop GUI application to easily configure and manage multiple LLM tasks to avoid writing the same prompts repeatedly"
+LICENSE=""
 # Dependent crate licenses
 LICENSE+="
 	Apache-2.0 Boost-1.0 CC0-1.0 ISC MIT OFL-1.1 UbuntuFontLicense-1.0
