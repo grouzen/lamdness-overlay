@@ -1,0 +1,9 @@
+# Ollama listens on localhost by default. Set OLLAMA_HOST=0.0.0.0:11434 to
+# expose it to your local network.
+#OLLAMA_HOST=127.0.0.1:11434
+
+# CORS origins. Use a narrower value when possible.
+OLLAMA_ORIGINS=*
+
+# Extra arguments passed after "ollama".
+OLLAMA_ARGS=serve
