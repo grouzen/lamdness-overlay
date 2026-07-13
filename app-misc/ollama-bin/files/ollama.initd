@@ -1,10 +1,10 @@
 #!/sbin/openrc-run
 
 name=$RC_SVCNAME
-description="Start ollama's daemon"
+description="Start Ollama daemon"
 supervisor=supervise-daemon
-group=${group:-${RC_SVCNAME}}
-user=${user:-${RC_SVCNAME}}
 command="/usr/bin/ollama"
-command_args="serve"
-command_user="ollama"
+command_args="${OLLAMA_ARGS:-serve}"
+command_user="ollama:ollama"
+
+export OLLAMA_HOST OLLAMA_ORIGINS OLLAMA_MODELS OLLAMA_KEEP_ALIVE
