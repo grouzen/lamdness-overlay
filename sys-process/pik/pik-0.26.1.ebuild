@@ -222,7 +222,7 @@ SRC_URI="
 	${CARGO_CRATE_URIS}
 "
 
-LICENSE=""
+LICENSE="MIT"
 # Dependent crate licenses
 LICENSE+=" Apache-2.0 Boost-1.0 MIT MPL-2.0 Unicode-DFS-2016"
 SLOT="0"

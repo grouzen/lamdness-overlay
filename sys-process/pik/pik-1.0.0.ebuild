@@ -120,7 +120,7 @@ CRATES="
 	line-clipping@0.3.5
 	linux-raw-sys@0.11.0
 	linux-raw-sys@0.4.15
-	listeners@0.4.0
+	listeners@0.5.1
 	litrs@1.0.0
 	lock_api@0.4.14
 	log@0.4.29
@@ -326,6 +326,8 @@ CRATES="
 	zune-jpeg@0.4.21
 "
 
+RUST_MIN_VER="1.88.0"
+
 inherit cargo
 
 DESCRIPTION="pik - process interactive kill"
@@ -343,3 +345,8 @@ LICENSE+="
 "
 SLOT="0"
 KEYWORDS="~amd64"
+
+# Relies on finding Cargo in the live process table.
+CARGO_SKIP_TESTS=(
+	should_find_cargo_process_by_name_path_or_args
+)
