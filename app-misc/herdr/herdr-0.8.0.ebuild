@@ -6,6 +6,9 @@
 EAPI=8
 
 RUST_MIN_VER=1.96.1
+ZIG_SLOT="0.15"
+ZIG_NEEDS_LLVM=1
+ZIG_OPTIONAL=1
 
 CRATES="
 	adler2@2.0.1
@@ -274,7 +277,12 @@ CRATES="
 	zmij@1.0.21
 "
 
-inherit cargo
+inherit cargo zig-utils
+
+UUCODE_0_1_URI="https://github.com/jacobsandlund/uucode/archive/\
+5f05f8f83a75caea201f12cc8ea32a2d82ea9732.tar.gz"
+UUCODE_0_2_URI="https://deps.files.ghostty.org/\
+uucode-0.2.0-ZZjBPqZVVABQepOqZHR7vV_NcaN-wats0IB6o-Exj6m9.tar.gz"
 
 DESCRIPTION="terminal workspace manager for AI coding agents"
 HOMEPAGE="https://herdr.dev"
@@ -297,8 +305,8 @@ SRC_URI="
 	https://deps.files.ghostty.org/oniguruma-1220c15e72eadd0d9085a8af134904d9a0f5dfcbed5f606ad60edc60ebeccd9706bb.tar.gz -> ${P}-oniguruma.tar.gz
 	https://deps.files.ghostty.org/pixels-12207ff340169c7d40c570b4b6a97db614fe47e0d83b5801a932dcd44917424c8806.tar.gz -> ${P}-pixels.tar.gz
 	https://deps.files.ghostty.org/spirv_cross-1220fb3b5586e8be67bc3feb34cbe749cf42a60d628d2953632c2f8141302748c8da.tar.gz -> ${P}-spirv-cross.tar.gz
-	https://github.com/jacobsandlund/uucode/archive/5f05f8f83a75caea201f12cc8ea32a2d82ea9732.tar.gz -> ${P}-uucode-0.1.0.tar.gz
-	https://deps.files.ghostty.org/uucode-0.2.0-ZZjBPqZVVABQepOqZHR7vV_NcaN-wats0IB6o-Exj6m9.tar.gz -> ${P}-uucode-0.2.0.tar.gz
+	${UUCODE_0_1_URI} -> ${P}-uucode-0.1.0.tar.gz
+	${UUCODE_0_2_URI} -> ${P}-uucode-0.2.0.tar.gz
 	https://deps.files.ghostty.org/vaxis-7dbb9fd3122e4ffad262dd7c151d80d863b68558.tar.gz -> ${P}-vaxis.tar.gz
 	https://deps.files.ghostty.org/wuffs-122037b39d577ec2db3fd7b2130e7b69ef6cc1807d68607a7c232c958315d381b5cd.tar.gz -> ${P}-wuffs.tar.gz
 	https://deps.files.ghostty.org/z2d-0.10.0-j5P_Hu-6FgBsZNgwphIqh17jDnj8_yPtD8yzjO6PpHRQ.tar.gz -> ${P}-z2d.tar.gz
@@ -319,13 +327,14 @@ LICENSE+="
 LICENSE+=" BSD FTL libpng MPL-2.0 OFL-1.1"
 SLOT="0"
 KEYWORDS="~amd64"
+IUSE="+simd"
 RESTRICT="test" # Upstream tests are racy and can hang in server autodetection.
 
-
-IUSE="+simd"
-
 BDEPEND="
-	=dev-lang/zig-0.15.2*
+	|| (
+		=dev-lang/zig-0.15.2*[llvm(+)]
+		=dev-lang/zig-bin-0.15.2*
+	)
 "
 
 ZIG_DISTFILES=(
@@ -356,13 +365,18 @@ ZIG_DISTFILES=(
 	"${P}-zlib.tar.gz"
 )
 
+pkg_setup() {
+	rust_pkg_setup
+	zig-utils_setup
+}
+
 src_prepare() {
 	default
 
 	local archive
 	for archive in "${ZIG_DISTFILES[@]}"; do
 		ZIG_GLOBAL_CACHE_DIR="${T}/zig-packages" \
-			zig fetch --global-cache-dir "${T}/zig-packages" \
+			"${ZIG_EXE}" fetch --global-cache-dir "${T}/zig-packages" \
 			"file://${DISTDIR}/${archive}" || die
 	done
 }
@@ -373,6 +387,7 @@ src_compile() {
 	local -x LIBGHOSTTY_VT_ZIG_SYSTEM_DIR="${T}/zig-packages/p"
 	local -x ZIG_GLOBAL_CACHE_DIR="${T}/zig-build-cache"
 	local -x ZIG_LOCAL_CACHE_DIR="${T}/zig-local-cache"
+	local -x ZIG="${ZIG_EXE}"
 
 	cargo_src_compile
 }
@@ -383,6 +398,7 @@ src_test() {
 	local -x LIBGHOSTTY_VT_ZIG_SYSTEM_DIR="${T}/zig-packages/p"
 	local -x ZIG_GLOBAL_CACHE_DIR="${T}/zig-build-cache"
 	local -x ZIG_LOCAL_CACHE_DIR="${T}/zig-local-cache"
+	local -x ZIG="${ZIG_EXE}"
 
 	cargo_src_test
 }
