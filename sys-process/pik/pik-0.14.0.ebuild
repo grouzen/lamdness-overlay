@@ -170,7 +170,7 @@ SRC_URI="
 	${CARGO_CRATE_URIS}
 "
 
-LICENSE=""
+LICENSE="MIT"
 # Dependent crate licenses
 LICENSE+="
 	MIT MPL-2.0 Unicode-DFS-2016
