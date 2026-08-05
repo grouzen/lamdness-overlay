@@ -27,6 +27,7 @@ sudo eselect repository enable lamdness
 ├── app-misc
 │   ├── aichat
 │   ├── ellama
+│   ├── flowmux
 │   ├── herdr
 │   ├── ollama-bin
 │   ├── ollana
@@ -55,4 +56,3 @@ sudo eselect repository enable lamdness
 ```
 
 Enjoy!
-
