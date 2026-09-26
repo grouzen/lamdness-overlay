@@ -19,8 +19,10 @@ RESTRICT="strip"
 RDEPEND="
 	app-arch/lz4
 	app-arch/xz-utils
+	app-crypt/p11-kit
 	dev-libs/gmp
 	dev-libs/glib:2
+	dev-libs/nettle
 	dev-libs/openssl:0=
 	gnome? ( gnome-base/gnome-keyring )
 	kde? ( kde-plasma/kwallet-pam )
@@ -31,6 +33,8 @@ RDEPEND="
 	sys-apps/iproute2
 	sys-auth/polkit
 	virtual/zlib
+	x11-libs/cairo
+	x11-libs/gdk-pixbuf
 	x11-libs/gtk+:3
 "
 
