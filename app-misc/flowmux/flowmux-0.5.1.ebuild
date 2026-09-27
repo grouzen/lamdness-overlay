@@ -603,7 +603,7 @@ src_test() {
 }
 
 src_install() {
-	cargo_src_install
+	dobin "$(cargo_target_dir)/${PN}"
 }
 
 QA_FLAGS_IGNORED="usr/bin/${PN}"
