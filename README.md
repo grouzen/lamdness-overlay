@@ -37,7 +37,8 @@ sudo eselect repository enable lamdness
 │   └── qv
 ├── dev-util
 │   ├── jwt-cli
-│   └── jwt-ui
+│   ├── jwt-ui
+│   └── tuicr
 ├── net-analyzer
 │   └── netscanner
 ├── net-im
