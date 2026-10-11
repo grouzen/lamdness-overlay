@@ -1,0 +1,69 @@
+Install resources through Portage and disable binary self-updates.
+
+--- a/src-vite/src/components/SettingsAbout.vue
++++ b/src-vite/src/components/SettingsAbout.vue
+@@ -21,16 +21,7 @@
+           </div>
+           <div class="flex items-center gap-2">
+             <span>{{ displayVersion }}</span>
+-            <button
+-              class="badge badge-sm border-0 px-2 py-2 font-medium transition-colors hover:text-primary"
+-              :class="isUpdateActionEnabled ? 'badge-primary cursor-pointer' : 'badge-neutral/60 cursor-pointer'"
+-              :disabled="isInstallingUpdate || isCheckingUpdate"
+-              :title="updateButtonTooltip"
+-              @click="handleUpdateAction"
+-            >
+-              <span v-if="isInstallingUpdate || isCheckingUpdate" class="loading loading-spinner loading-xs"></span>
+-              <span>{{ updateButtonText }}</span>
+-            </button>
++            <span class="text-xs opacity-60">Updates managed by Portage</span>
+           </div>
+         </div>
+ 
+--- a/src-vite/src/views/Home.vue
++++ b/src-vite/src/views/Home.vue
+@@ -463,9 +463,6 @@
+     console.error('Failed to get app name:', e);
+   }
+ 
+-  if (config.settings.autoCheckUpdates !== false) {
+-    void checkForUpdates(false);
+-  }
+ });
+ 
+ onBeforeUnmount(() => {
+--- a/src-tauri/src/main.rs
++++ b/src-tauri/src/main.rs
+@@ -66,7 +66,6 @@
+         .plugin(tauri_plugin_fs::init())
+         .plugin(tauri_plugin_dialog::init())
+         .plugin(tauri_plugin_process::init())
+-        .plugin(tauri_plugin_updater::Builder::new().build())
+         .manage(t_video::VideoManager::default())
+         .manage(t_ai::AiState(std::sync::Mutex::new(t_ai::AiEngine::new())))
+         .manage(t_face::FaceState(std::sync::Arc::new(
+--- a/src-tauri/capabilities/default.json
++++ b/src-tauri/capabilities/default.json
+@@ -63,7 +63,6 @@
+     "aptabase:allow-track-event",
+     "shell:default",
+     "fs:default",
+-    "fs:scope",
+-    "updater:default"
++    "fs:scope"
+   ]
+ }
+--- a/src-tauri/tauri.conf.json
++++ b/src-tauri/tauri.conf.json
+@@ -57,10 +57,7 @@
+       "icons/icon.ico",
+       "icons/icon.icns"
+     ],
+-    "resources": {
+-      "resources/models/*": "models",
+-      "resources/ffmpeg/*": "ffmpeg"
+-    }
++    "resources": {}
+   },
+   "plugins": {
+     "updater": {

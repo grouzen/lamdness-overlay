@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<use>
+		<flag name="ai">Install CLIP models for local AI image and text search</flag>
+		<flag name="face">Install InsightFace models for face recognition (non-commercial research only)</flag>
+	</use>
+	<upstream>
+		<remote-id type="github">julyx10/lap</remote-id>
+	</upstream>
+</pkgmetadata>

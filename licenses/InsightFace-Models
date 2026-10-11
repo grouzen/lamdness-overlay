@@ -1,0 +1,9 @@
+InsightFace pretrained model terms
+
+Upstream: https://github.com/deepinsight/insightface/tree/master/python-package
+
+The pretrained models provided with this library are for non-commercial
+research only, whether downloaded automatically or manually.
+
+These terms apply to the buffalo_s face detection and recognition models
+(det_500m.onnx and w600k_mbf.onnx), not to the MIT-licensed library code.
