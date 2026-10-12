@@ -39,10 +39,13 @@ sudo eselect repository enable lamdness
 │   ├── jwt-cli
 │   ├── jwt-ui
 │   └── tuicr
+├── media-gfx
+│   └── lap
 ├── net-analyzer
 │   └── netscanner
 ├── net-im
-│   └── discord
+│   ├── discord
+│   └── teams-for-linux
 ├── net-misc
 │   └── exodus
 ├── net-vpn
