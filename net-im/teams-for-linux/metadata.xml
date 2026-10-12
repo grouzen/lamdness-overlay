@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<upstream>
+		<bugs-to>https://github.com/IsmaelMartinez/teams-for-linux/issues</bugs-to>
+		<changelog>https://github.com/IsmaelMartinez/teams-for-linux/releases</changelog>
+		<remote-id type="github">IsmaelMartinez/teams-for-linux</remote-id>
+	</upstream>
+</pkgmetadata>
