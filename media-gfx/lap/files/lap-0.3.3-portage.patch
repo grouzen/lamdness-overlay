@@ -1,0 +1,56 @@
+Install resources through Portage and disable binary self-updates.
+
+--- a/src-vite/src/components/SettingsAbout.vue
++++ b/src-vite/src/components/SettingsAbout.vue
+@@ -81,31 +81 @@
+-    <!-- updates -->
+-    <div class="w-full max-w-lg rounded-box p-2 space-y-2 bg-base-300/30 border border-base-content/5 shadow-sm">
+-      <div class="flex items-center gap-2 text-base-content/30">
+-        <span class="font-bold uppercase text-[10px] tracking-widest">{{ $t('settings.about.section_updates') }}</span>
+-      </div>
+-      <div class="flex items-center justify-between gap-4 px-1 rounded-box hover:bg-base-100/10 transition-colors duration-200">
+-        <div class="min-w-0 flex flex-col gap-0.5 text-sm leading-5">
+-          <div>{{ updateStatusText }}</div>
+-          <progress
+-            v-if="isDownloadingUpdate"
+-            class="progress progress-primary mt-1 h-1.5 w-full max-w-xs"
+-            :value="downloadPercent === null ? undefined : downloadPercent"
+-            max="100"
+-          ></progress>
+-        </div>
+-        <button
+-          class="btn btn-sm btn-ghost rounded-box bg-base-100 border border-base-content/30 text-base-content/70 hover:text-base-content shrink-0"
+-          :disabled="isCheckingUpdate || isInstallingUpdate || isDownloadingUpdate"
+-          @click="handleUpdateAction"
+-        >
+-          <span v-if="isCheckingUpdate || isInstallingUpdate || isDownloadingUpdate" class="loading loading-spinner loading-xs"></span>
+-          <span v-else>{{ updateButtonText }}</span>
+-        </button>
+-      </div>
+-      <div class="flex items-center justify-between gap-4 px-1 rounded-box hover:bg-base-100/10 transition-colors duration-200">
+-        <div class="flex flex-col gap-0.5 text-sm leading-5">
+-          <div>{{ $t('settings.general.auto_check_updates') }}</div>
+-        </div>
+-        <input type="checkbox" class="toggle toggle-primary toggle-sm" v-model="config.settings.autoCheckUpdates" />
+-      </div>
+-    </div>
++    <div class="text-sm opacity-60">Updates managed by Portage</div>
+--- a/src-vite/src/views/Home.vue
++++ b/src-vite/src/views/Home.vue
+@@ -454 +453,0 @@
+-  if (config.settings.autoCheckUpdates !== false) void checkForUpdates(false);
+--- a/src-tauri/src/main.rs
++++ b/src-tauri/src/main.rs
+@@ -76 +75,0 @@
+-        .plugin(tauri_plugin_updater::Builder::new().build())
+--- a/src-tauri/capabilities/default.json
++++ b/src-tauri/capabilities/default.json
+@@ -68,2 +68 @@
+-    "fs:scope",
+-    "updater:default"
++    "fs:scope"
+--- a/src-tauri/tauri.conf.json
++++ b/src-tauri/tauri.conf.json
+@@ -61,2 +60,0 @@
+-      "resources/models/*": "models",
+-      "resources/ffmpeg/*": "ffmpeg",
