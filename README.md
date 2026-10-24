@@ -27,6 +27,7 @@ sudo eselect repository enable lamdness
 ├── app-misc
 │   ├── aichat
 │   ├── ellama
+│   ├── flopwire
 │   ├── flowmux
 │   ├── herdr
 │   ├── ollama-bin
@@ -41,6 +42,8 @@ sudo eselect repository enable lamdness
 │   └── tuicr
 ├── media-gfx
 │   └── lap
+├── media-sound
+│   └── tuitar
 ├── net-analyzer
 │   └── netscanner
 ├── net-im
