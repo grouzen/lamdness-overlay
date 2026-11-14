@@ -1,0 +1,41 @@
+Disable undeclared optional TPM and system JSON dependencies in the bundled OpenConnect build.
+
+--- a/crates/openconnect/build.rs
++++ b/crates/openconnect/build.rs
+@@ -115,6 +115,8 @@
+     .with("gnutls", None)
+     .without("openssl", None)
+     .with("gnutls-tss2", Some("no"))
++    .without("gnutls-tss", None)
++    .with("builtin-json", None)
+     .with("vpnc-script", Some("/etc/vpnc/vpnc-script")); // Specify vpnc-script, otherwise it will fail on macOS
+ 
+   if target_os() == "macos" {
+--- a/crates/openconnect/deps/openconnect/configure.ac
++++ b/crates/openconnect/deps/openconnect/configure.ac
+@@ -525,6 +525,9 @@
+ if test -n "$default_gnutls_priority"; then
+    AC_DEFINE_UNQUOTED([DEFAULT_PRIO], ["$default_gnutls_priority"], [The GnuTLS priority string])
+ fi
++
++AC_ARG_WITH([gnutls-tss],
++   AS_HELP_STRING([--without-gnutls-tss], [Disable Trousers TPM 1.2 support]))
+ 
+ AC_ARG_WITH([gnutls-tss2],
+    AS_HELP_STRING([--with-gnutls-tss2], [Specify TSS2 library (tss2-esys, ibmtss)]))
+@@ -696,6 +699,7 @@
+ 	# From GnuTLS 3.6.13
+ 	AC_CHECK_FUNC(gnutls_hkdf_expand, [have_hkdf=yes], [have_hkdf=no])
+ 
++	AS_IF([test "$with_gnutls_tss" != "no"], [
+ 	LIBS="-ltspi $oldlibs"
+ 	AC_MSG_CHECKING([for Trousers tss library])
+ 	AC_LINK_IFELSE([AC_LANG_PROGRAM([
+@@ -708,6 +712,7 @@
+ 			AC_SUBST([TSS_CFLAGS], [])
+ 			AC_DEFINE(HAVE_TROUSERS, 1, [Have Trousers TSS library])],
+ 		       [AC_MSG_RESULT(no)])
++	])
+ 
+ 	LIBS="$oldlibs"
+ 	CFLAGS="$oldcflags"
