@@ -993,6 +993,9 @@ declare -A GIT_CRATES=(
 inherit cargo desktop llvm-r2 xdg zig-utils
 
 GHOSTTY_COMMIT="291fd050b9e9c293c8adb6a140742649b7e42d3a"
+AROCC_COMMIT="f97cdfc3779aec4b242299e2fc9a1c828c3547c6"
+ZIGIMG_COMMIT="d695acd97c02e57bb151e8f659d1280f5cd6ca70"
+VAXIS_UUCODE_COMMIT="2826a37a4562284fdacd8fa029d49509cc9bffcd"
 QUICKJS_COMMIT="fd0a0210b7be00957751871e7e01b8291268fc29"
 QUICKJS_JIT_COMMIT="96593cd7a54440ac060a391b8baea7e9a3cf1393"
 GHOSTTY_DEPS_URI="https://deps.files.ghostty.org"
@@ -1004,6 +1007,10 @@ SRC_URI="
 	https://github.com/herdrdev/herdr-app/archive/refs/tags/v${PV}.tar.gz -> ${P}.tar.gz
 	https://github.com/ghostty-org/ghostty/archive/${GHOSTTY_COMMIT}.tar.gz -> ${P}-ghostty.tar.gz
 	https://github.com/quickjs-ng/quickjs/archive/${QUICKJS_COMMIT}.tar.gz -> ${P}-quickjs.tar.gz
+	https://github.com/vancluever/arocc/archive/${AROCC_COMMIT}.tar.gz -> ${P}-arocc.tar.gz
+	https://github.com/zigimg/zigimg/archive/${ZIGIMG_COMMIT}.tar.gz -> ${P}-zigimg.tar.gz
+	https://github.com/jacobsandlund/uucode/archive/${VAXIS_UUCODE_COMMIT}.tar.gz
+		-> ${P}-vaxis-uucode.tar.gz
 	https://codeberg.org/vancluever/translate-c/archive/4e879eb8aba615de112eabd1231ea6e01920cead.tar.gz
 		-> ${P}-4e879eb8aba615de112eabd1231ea6e01920cead.tar.gz
 	${GHOSTTY_DEPS_URI}/DearBindings_v0.17_ImGui_v1.92.5-docking.tar.gz
@@ -1102,6 +1109,9 @@ BDEPEND="
 "
 
 ZIG_DISTFILES=(
+	"${P}-arocc.tar.gz"
+	"${P}-zigimg.tar.gz"
+	"${P}-vaxis-uucode.tar.gz"
 	"${P}-4e879eb8aba615de112eabd1231ea6e01920cead.tar.gz"
 	"${P}-DearBindings_v0.17_ImGui_v1.92.5-docking.tar.gz"
 	"${P}-JetBrainsMono-2.304.tar.gz"
