@@ -1,0 +1,85 @@
+Install resources through Portage and disable binary self-updates.
+
+--- a/src-vite/src/components/SettingsAbout.vue
++++ b/src-vite/src/components/SettingsAbout.vue
+@@ -78,37 +78,7 @@
+       </div>
+     </div>
+
+-    <!-- updates -->
+-    <div class="w-full rounded-box p-2 space-y-2 bg-base-300/30 border border-base-content/5 shadow-sm">
+-      <div class="flex items-center gap-2 text-base-content/30">
+-        <span class="font-bold uppercase text-[10px] tracking-widest">{{ $t('settings.about.section_updates') }}</span>
+-      </div>
+-      <div class="flex items-center justify-between gap-4 px-1 rounded-box hover:bg-base-100/10 transition-colors duration-200">
+-        <div class="min-w-0 flex-1 flex flex-col gap-0.5 text-sm leading-5">
+-          <div>{{ updateStatusText }}</div>
+-          <progress
+-            v-if="isDownloadingUpdate"
+-            class="progress progress-primary mt-1 h-1.5 w-full"
+-            :value="downloadPercent === null ? undefined : downloadPercent"
+-            max="100"
+-          ></progress>
+-        </div>
+-        <button
+-          class="btn btn-sm btn-ghost rounded-box bg-base-100 border border-base-content/30 text-base-content/70 hover:text-base-content shrink-0"
+-          :disabled="isCheckingUpdate || isInstallingUpdate || isDownloadingUpdate"
+-          @click="handleUpdateAction"
+-        >
+-          <span v-if="isCheckingUpdate || isInstallingUpdate || isDownloadingUpdate" class="loading loading-spinner loading-xs"></span>
+-          <span v-else>{{ updateButtonText }}</span>
+-        </button>
+-      </div>
+-      <div class="flex items-center justify-between gap-4 px-1 rounded-box hover:bg-base-100/10 transition-colors duration-200">
+-        <div class="flex flex-col gap-0.5 text-sm leading-5">
+-          <div>{{ $t('settings.general.auto_check_updates') }}</div>
+-        </div>
+-        <input type="checkbox" class="toggle toggle-primary toggle-sm" v-model="config.settings.autoCheckUpdates" />
+-      </div>
+-    </div>
++    <div class="text-sm opacity-60">Updates managed by Portage</div>
+   </div>
+ </template>
+
+--- a/src-vite/src/views/Home.vue
++++ b/src-vite/src/views/Home.vue
+@@ -477,7 +477,6 @@
+   uiStore.startupReady = true;
+   performance.mark('startup-first-content-ready');
+   void invoke('finish_startup', { model: config.settings.imageSearch.model || 0 }).catch(console.error);
+-  if (config.settings.autoCheckUpdates !== false) void checkForUpdates(false);
+ }
+ watch(databaseCorrupted, corrupted => {
+   if (corrupted) void nextTick(() => requestAnimationFrame(() => requestAnimationFrame(() => finishStartup())));
+--- a/src-tauri/src/main.rs
++++ b/src-tauri/src/main.rs
+@@ -85,7 +85,6 @@
+         .plugin(tauri_plugin_fs::init())
+         .plugin(tauri_plugin_dialog::init())
+         .plugin(tauri_plugin_process::init())
+-        .plugin(tauri_plugin_updater::Builder::new().build())
+         .manage(startup)
+         .manage(t_video::VideoManager::default())
+         .manage(t_ai::AiState(std::sync::Mutex::new(t_ai::AiEngine::new())))
+--- a/src-tauri/capabilities/default.json
++++ b/src-tauri/capabilities/default.json
+@@ -65,7 +65,6 @@
+     "aptabase:allow-track-event",
+     "shell:default",
+     "fs:default",
+-    "fs:scope",
+-    "updater:default"
++    "fs:scope"
+   ]
+ }
+--- a/src-tauri/tauri.conf.json
++++ b/src-tauri/tauri.conf.json
+@@ -61,8 +61,6 @@
+       "icons/icon.icns"
+     ],
+     "resources": {
+-      "resources/models/*": "models",
+-      "resources/ffmpeg/*": "ffmpeg",
+       "../THIRD_PARTY_NOTICES.txt": "licenses/THIRD_PARTY_NOTICES.txt"
+     }
+   },
