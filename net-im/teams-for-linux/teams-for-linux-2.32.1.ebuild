@@ -31,6 +31,9 @@ SLOT="0"
 KEYWORDS="-* ~amd64 ~arm64"
 RESTRICT="bindist mirror"
 
+# The RPMs use the 07070X payload format, which rpm2targz cannot read.
+BDEPEND+=" >=app-arch/rpm-4.19.0[lzma(+)]"
+
 RDEPEND="
 	app-accessibility/at-spi2-core:2
 	dev-libs/expat
