@@ -5,7 +5,7 @@
 
 EAPI=8
 
-RUST_MIN_VER="1.95"
+RUST_MIN_VER="1.95.0"
 
 CRATES="
 	adler2@2.0.1
